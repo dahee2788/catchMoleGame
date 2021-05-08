@@ -15,7 +15,7 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "ignorePatterns": ["dist/", "node_modules/", ".eslintrc.js"],
+    "ignorePatterns": ["dist/", "node_modules/", ".eslintrc.js", "webpack.config.js"],
     "plugins": [
         "@typescript-eslint"
     ],
