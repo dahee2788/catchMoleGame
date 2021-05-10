@@ -68,26 +68,27 @@ div.img-div{
     width: 100%;
     bottom: 0px;
     position:absolute;
+    z-index: 2;
    
 }
 .mole-image{
     width: 100%;
-    bottom: 0px;
     position:absolute;
+    z-index: 1;
      /* 애니메이션 이름 */
   animation-name: upmole;
-  animation-duration:3s;
+  animation-duration:1s;
   animation-duration: linear;
-  animation-iteration-count:infinite;
+  animation-iteration-count:1;
   animation-direction:alternate;
   animation-fill-mode: both; 
    
 }
 @-webkit-keyframes upmole {
     0% {
-      top:0px
+      bottom:0%
     }
     100% {
-      top:-96%;
+        bottom:100%
     }
   }

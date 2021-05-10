@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+
 module.exports = {
     mode: 'development',
     devtool: 'eval-source-map',
@@ -49,7 +50,7 @@ module.exports = {
         new MiniCssExtractPlugin({ filename: 'app.css' }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['dist']
-        })
+        }),
     ],
     resolve: {
         extensions: ['.ts', '.js', '.html', '.css']
