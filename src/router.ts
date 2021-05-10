@@ -1,3 +1,5 @@
+import ready  from './pages/ready.html';
+import game  from './pages/game.html';
 import homeTemplate  from './pages/home.html';
 import aboutTemplate   from './pages/about.html';
 
@@ -5,7 +7,8 @@ interface route{
     [key:string] : string
 }
 const routes :route= {
-  '/' : homeTemplate,
+  '/' : ready,
+  '/game' : game,
   '/home': homeTemplate,
   '/about': aboutTemplate
 }
