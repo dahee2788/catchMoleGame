@@ -71,25 +71,61 @@ div.img-div{
     z-index: 2;
    
 }
-.mole-image{
+.up-mole-image-1{
     width: 100%;
-    bottom: 0px;
     position:absolute;
     z-index: 1;
+    cursor:pointer;
      /* 애니메이션 이름 */
   animation-name: upmole;
-  animation-duration:5s;
+  animation-duration:1.5s;
   animation-duration: linear;
-  animation-iteration-count:1;
+  animation-iteration-count:2;
   animation-direction:alternate;
   animation-fill-mode: both; 
    
 }
+.up-mole-image-2{
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    cursor:pointer;
+     /* 애니메이션 이름 */
+  animation-name: upmole;
+  animation-duration:1s;
+  animation-duration: linear;
+  animation-iteration-count:2;
+  animation-direction:alternate;
+  animation-fill-mode: both; 
+   
+}
+.up-mole-image-3{
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    cursor:pointer;
+     /* 애니메이션 이름 */
+  animation-name: upmole;
+  animation-duration:0.7s;
+  animation-duration: linear;
+  animation-iteration-count:2;
+  animation-direction:alternate;
+  animation-fill-mode: both; 
+   
+}
+.basic-mole-image{
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    bottom:0%;
+
+   
+}
 @-webkit-keyframes upmole {
     0% {
-      top:0px
+      bottom:0%
     }
     100% {
-      top:-96%;
+        bottom:100%
     }
   }

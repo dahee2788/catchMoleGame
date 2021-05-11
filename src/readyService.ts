@@ -22,7 +22,7 @@ import {gameService} from './gameService';
 
         const gameForm = document.querySelector('#gameForm')!;
 
-         if(gameForm) gameService.gameStart();
+         if(gameForm) gameService.gameInit();
      
         }
 
