@@ -6,18 +6,14 @@
     <title>game Main</title>
 </head>
 <body>
-    <form id="gameForm">
-        <div class = "wrapper">
-            <label>남는시간 <label id="time" class="time">60</label>초</label>  
-            <label><label id="catchPoint">0</label>점</label>           
+        <div class="game-header">
+            <span><label>남은시간 </label><label id="time" class="time">60</label><label>초</label></span>  
+            <span><label id="catchPoint">0</label><label>점</label></span>           
         </div>
-        <div id ="gameMain" class="main">
+        <div id ="gameMain" class="main"></div>
+        <div class="game-footer">
+            <span id="btnPause" class="btn">일시정지</span>
+            <span id="btnFinish" class="btn">그만하기</span>    
         </div>
-        <div class = "wrapper">
-            <span id="btnPause">일시정지</span>
-            <span id="btnFinish">그만하기</span>    
-        </div>
-    </form>
 </body>
-<script src="/dist/bundle.js"></script>
 </html>

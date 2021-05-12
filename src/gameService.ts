@@ -1,9 +1,13 @@
+// image import
 import holeImg from './img/두더지_굴_1.png';
 import moleImg from './img/두더지_1.png';
+// router import
 import {router} from './router';
+// service import
 import {readyService} from './readyService';
 import {resultService} from './resultService';
 
+// 전역변수 선언
 let timeflag = true;
 let mTimeflag = true;
 let time = document.getElementById('time') as HTMLLabelElement;
@@ -13,35 +17,40 @@ let row:number;
 let col:number;
 let mole:number;
 
+// 게임 초기화 
 function gameInit(){
 
-row = parseInt((document.getElementById('hRow') as HTMLInputElement).value);
-col = parseInt((document.getElementById('hCol') as HTMLInputElement).value);
-mole = parseInt((document.getElementById('hMole') as HTMLInputElement).value);
-const btnPause = document.getElementById('btnPause') as HTMLSpanElement;
-const btnFinish = document.getElementById('btnFinish') as HTMLSpanElement;
+    row = parseInt((document.getElementById('hRow') as HTMLInputElement).value);
+    col = parseInt((document.getElementById('hCol') as HTMLInputElement).value);
+    mole = parseInt((document.getElementById('hMole') as HTMLInputElement).value);
+    const btnPause = document.getElementById('btnPause') as HTMLSpanElement;
+    const btnFinish = document.getElementById('btnFinish') as HTMLSpanElement;
 
-btnPause.addEventListener('click',onClickPauseBtn);
-btnFinish.addEventListener('click',onClickFinishBtn);
-// 일시정지 // 그만하기 add click event
+    // 일시정지 ,그만하기 add click event
+    btnPause.addEventListener('click',onClickPauseBtn);
+    btnFinish.addEventListener('click',onClickFinishBtn);
 
-time = document.getElementById('time') as HTMLLabelElement;
-catchPoint  = document.getElementById('catchPoint') as HTMLLabelElement;
-timeflag = false;
-mTimeflag = false;
-time.innerHTML = "60";
-catchPoint.innerHTML = "0";
-setDiv(row,col);
-// 게임 시작
-gameStart(row,col,mole);
+    // 게임 내 변수 초기화
+    time = document.getElementById('time') as HTMLLabelElement;
+    catchPoint  = document.getElementById('catchPoint') as HTMLLabelElement;
+    timeflag = false;
+    mTimeflag = false;
+    time.innerHTML = "60";
+    catchPoint.innerHTML = "0";
+    setDiv(row,col);
+
+    // 게임 시작
+    gameStart(row,col,mole);
+
 }
 
 // 게임 시작 
 function gameStart(row:number, col:number, mole:number)
 {
+    // 전체 시간 타이머
    timer();
-    moleTimer(row,col,mole,1000);
-    
+   // 두더지 호출 타이머
+   moleTimer(row,col,mole,1000);
       
 }
 // 전체 시간 timer
@@ -100,7 +109,7 @@ function rand(max:number) {
   }
 
 
- // 두더지 timer
+ // 두더지 호출 timer
 function moleTimer(row:number, col:number, mole:number,sec:number) { // 시간 3초마다
     setTimeout(function(){ 
         if(mTimeflag) {
@@ -108,65 +117,67 @@ function moleTimer(row:number, col:number, mole:number,sec:number) { // 시간 3
             return;
         }
   
-        let moleRow = 1;
-        let moleCol = 1;
-        let id = "";
-        let moleClassName="";
-        
-        if( 10 > parseInt(time.innerHTML)) moleClassName = "up-mole-image-3";
-        else if( 45 > parseInt(time.innerHTML)) moleClassName = "up-mole-image-2";
-        else if( 60 > parseInt(time.innerHTML)) moleClassName = "up-mole-image-1";
+    let moleRow = 1;
+    let moleCol = 1;
+    let id = "";
+    let moleClassName="";
+    
+    // 적용할 클래스 셋팅, 남아있는 시간에 비례하여 두더지 노출 시간 감소
+    if( 10 > parseInt(time.innerHTML)) moleClassName = "up-mole-image-3";
+    else if( 45 > parseInt(time.innerHTML)) moleClassName = "up-mole-image-2";
+    else if( 60 > parseInt(time.innerHTML)) moleClassName = "up-mole-image-1";
 
-        // class 초기화 
-        const moles1 = document.querySelectorAll('.up-mole-image-1');
-        moles1.forEach(el => {
+    // class 초기화 
+    const moles1 = document.querySelectorAll('.up-mole-image-1');
+    moles1.forEach(el => {
+        el.className = "basic-mole-image";
+    });
+    const moles2 = document.querySelectorAll('.up-mole-image-2');
+    moles2.forEach(el => {
+        el.className = "basic-mole-image";
+    });
+    const moles3 = document.querySelectorAll('.up-mole-image-3');
+    moles3.forEach(el => {
+        el.className = "basic-mole-image";
+    });
 
-            el.className = "basic-mole-image";
-        });
-        const moles2 = document.querySelectorAll('.up-mole-image-2');
-        moles2.forEach(el => {
-            el.className = "basic-mole-image";
-        });
-        const moles3 = document.querySelectorAll('.up-mole-image-3');
-        moles3.forEach(el => {
-            el.className = "basic-mole-image";
-        });
+    // 입력된 두더지 수만큼 for문 실행되면서 random 좌표 생성 
+    for(let m = 0; m< mole; m++){
 
-        for(let m = 0; m< mole; m++){
+        moleRow = rand(row);
+        moleCol = rand(col);
+        id = String(moleRow) + "_" +String(moleCol);
 
-            moleRow = rand(row);
-            moleCol = rand(col);
-            id = String(moleRow) + "_" +String(moleCol);
+        const moleElem = document.getElementById(id);
 
-            const moleElem = document.getElementById(id);
+        if(moleElem?.className == "basic-mole-image"){
+            moleElem.className = moleClassName;
+            moleElem.addEventListener("click",moleClickEvent);   
+        }           
+    }
+    // 남아있는 시간에 비례하여 두더지 호출 시간 감소
+    if(10 > parseInt(time.innerHTML) ){
+        moleTimer(row,col,mole,1000);
+    } 
+    else if( 45 > parseInt(time.innerHTML) ){
+        moleTimer(row,col,mole,2000);
+    }
+    else if(60 > parseInt(time.innerHTML)){
 
-            if(moleElem?.className == "basic-mole-image"){
-                moleElem.className = moleClassName;
-                moleElem.addEventListener("click",moleClickEvent);   
-            }           
-        }
-        if(10 > parseInt(time.innerHTML) ){
-            moleTimer(row,col,mole,1000);
-        } 
-        else if( 45 > parseInt(time.innerHTML) ){
-            moleTimer(row,col,mole,2000);
-        }
-        else if(60 > parseInt(time.innerHTML)){
+        moleTimer(row,col,mole,3000);
+    }
+    else {
 
-            moleTimer(row,col,mole,3000);
-        }
-        else {
-
-            mTimeflag = true;
-        }   
+        mTimeflag = true;
+    }   
     }, sec);
 }
+// 두더지 클릭 이벤트
 function moleClickEvent(this:HTMLElement){
-
-catchPoint.innerHTML = String(parseInt(catchPoint.innerHTML)+1);
- this.removeEventListener("click",moleClickEvent);
-
+    catchPoint.innerHTML = String(parseInt(catchPoint.innerHTML)+1);
+    this.removeEventListener("click",moleClickEvent);
 }
+// 일시정지 버튼 클릭 이벤트
 function onClickPauseBtn(this:HTMLElement){
 
     if(this.innerHTML == "일시정지")
@@ -233,15 +244,15 @@ function onClickFinishBtn(this:HTMLElement){
     col.value = hCol.value;
     mole.value = hMole.value;
 
-    
 }
+// 시간 종료 이벤트
 function gameFinish(){
     const hPoint = document.getElementById('hPoint') as HTMLInputElement;
     hPoint.value = catchPoint.innerHTML;
     router.historyRouterPush('/result',historyAppDiv);
-    resultService.resultInit();
-    
+    resultService.resultInit();    
 }
+// export
 export const gameService = {
     gameInit,
     gameStart,

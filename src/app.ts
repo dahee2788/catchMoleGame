@@ -10,8 +10,7 @@ import {readyService} from './readyService';
 // app division
 const historyAppDiv:HTMLDivElement  = document.querySelector("#history-app")!;
 
-// browser history
-
+// 화면 초기화
 router.initialRoutes(historyAppDiv);
 readyService.readyInit();
 

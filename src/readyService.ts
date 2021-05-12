@@ -1,7 +1,9 @@
+// router import
 import {router} from './router';
+// service import
 import {gameService} from './gameService';
 
-
+// 준비화면 초기화
 function readyInit(){
     const btnStart = document.getElementById('btnStart') as HTMLSpanElement;
     btnStart.addEventListener('click',readySubmit);
@@ -58,9 +60,7 @@ function readySubmit(this:HTMLElement) {
     const historyAppDiv:HTMLDivElement  = document.querySelector("#history-app")!;
     router.historyRouterPush('/game',historyAppDiv);
 
-    const gameForm = document.querySelector('#gameForm')!;
-
-        if(gameForm) gameService.gameInit();
+    gameService.gameInit();
     
     }
 
