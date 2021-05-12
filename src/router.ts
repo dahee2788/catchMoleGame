@@ -1,7 +1,6 @@
 import ready  from './pages/ready.html';
 import game  from './pages/game.html';
-import homeTemplate  from './pages/home.html';
-import aboutTemplate   from './pages/about.html';
+import result  from './pages/result.html';
 
 interface route{
     [key:string] : string
@@ -9,8 +8,7 @@ interface route{
 const routes :route= {
   '/' : ready,
   '/game' : game,
-  '/home': homeTemplate,
-  '/about': aboutTemplate
+  '/result' : result,
 }
 
 function initialRoutes (el:HTMLDivElement){
